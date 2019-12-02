@@ -1,0 +1,105 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 500px;
+            height: 500px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#e84118", "id": "TSTFRAM-5", "label": "TSTFRAM-5", "shape": "dot"}, {"color": "#e84118", "id": "TSTFRAM-6", "label": "TSTFRAM-6", "shape": "dot"}, {"color": "#e84118", "id": "TSTFRAM-7", "label": "TSTFRAM-7", "shape": "dot"}, {"color": "#e84118", "id": "TSTFRAM-8", "label": "TSTFRAM-8", "shape": "dot"}, {"color": "#00a8ff", "id": "TSTFRAM-3", "label": "TSTFRAM-3", "shape": "dot"}, {"color": "#e84118", "id": "TSTFRAM-9", "label": "TSTFRAM-9", "shape": "dot"}, {"color": "#00a8ff", "id": "TSTFRAM-4", "label": "TSTFRAM-4", "shape": "dot"}, {"color": "#273c75", "id": "TSTFRAM-2", "label": "TSTFRAM-2", "shape": "dot"}, {"color": "#9c88ff", "id": "TSTFRAM-1", "label": "TSTFRAM-1", "shape": "dot"}]);
+        edges = new vis.DataSet([{"from": "TSTFRAM-1", "to": "TSTFRAM-2"}, {"from": "TSTFRAM-2", "to": "TSTFRAM-3"}, {"from": "TSTFRAM-3", "to": "TSTFRAM-5"}, {"from": "TSTFRAM-3", "to": "TSTFRAM-6"}, {"from": "TSTFRAM-3", "to": "TSTFRAM-7"}, {"from": "TSTFRAM-3", "to": "TSTFRAM-8"}, {"from": "TSTFRAM-2", "to": "TSTFRAM-4"}, {"from": "TSTFRAM-4", "to": "TSTFRAM-9"}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
